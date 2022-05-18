@@ -59,16 +59,14 @@ clickButtonToClose();
 // get User Choice
 const startGame = (event) => {
   let userChoice = event.target.id;
-
+  playerHand.src = "./Assets/rock.png";
+  computerHand.src = "./Assets/rock.png";
   if (userChoice == "rock") {
     userChoice = 0;
-    playerHand.src = "./Assets/rock.png";
   } else if (userChoice == "paper") {
     userChoice = 1;
-    playerHand.src = "./Assets/paper.png";
   } else {
     userChoice = 2;
-    playerHand.src = "./Assets/scissors.png";
   }
 
   // get Computer Choice
@@ -76,13 +74,6 @@ const startGame = (event) => {
   const computerChoice = Math.floor(Math.random() * 3);
   console.log(computerChoice);
 
-  if (computerChoice == 0) {
-    computerHand.src = "./Assets/rock.png";
-  } else if (computerChoice == 1) {
-    computerHand.src = "./Assets/paper.png";
-  } else {
-    computerHand.src = "./Assets/scissors.png";
-  }
   playerHand.style.animation = "shakePlayer 2s ease";
   computerHand.style.animation = "shakeComputer 2s ease";
 
@@ -220,11 +211,25 @@ const startGame = (event) => {
     }
   };
   setTimeout(() => {
+    playerHand.style.animation = "";
+    computerHand.style.animation = "";
+    if (userChoice == 0) {
+      playerHand.src = "./Assets/rock.png";
+    } else if (userChoice == 1) {
+      playerHand.src = "./Assets/paper.png";
+    } else {
+      playerHand.src = "./Assets/scissors.png";
+    }
+    if (computerChoice == 0) {
+      computerHand.src = "./Assets/rock.png";
+    } else if (computerChoice == 1) {
+      computerHand.src = "./Assets/paper.png";
+    } else {
+      computerHand.src = "./Assets/scissors.png";
+    }
     compareScore();
     winWith10Points();
     endingGameWith3StraightWins();
-    playerHand.style.animation = "";
-    computerHand.style.animation = "";
   }, 2000);
 };
 
